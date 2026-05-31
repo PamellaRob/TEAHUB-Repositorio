@@ -9,6 +9,8 @@ import model.Paciente;
 import javax.swing.*;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
+import java.time.Period;
+import java.time.LocalDate;
 
 import javax.swing.JDialog;
 
@@ -47,7 +49,8 @@ public class DetalhesPacienteDialog extends JDialog {
         // Dados
         String[] labels = {"Data de Nascimento:", "Responsável:", "Telefone:", "Nível TEA:", "Status:"};
         String[] valores = {
-            paciente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+            paciente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) 
+    + "  |  " + calcularIdade(paciente.getDataNascimento()) + " anos",
             paciente.getResponsavel(),
             paciente.getTelefoneResponsavel(),
             "Nível " + paciente.getNivelTea() + descricaoNivel(paciente.getNivelTea()),
@@ -94,4 +97,8 @@ public class DetalhesPacienteDialog extends JDialog {
             default -> "";
         };
     }
+
+    private int calcularIdade(LocalDate dataNascimento) {
+    return Period.between(dataNascimento, LocalDate.now()).getYears();
+}
 }
