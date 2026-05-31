@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class ConexaoBanco {
 
-    // ⚠️ Altere os dados abaixo para os do seu PostgreSQL
     private static final String URL    = "jdbc:postgresql://localhost:5432/teahub";
     private static final String USUARIO = "postgres";
     private static final String SENHA   = "root";
